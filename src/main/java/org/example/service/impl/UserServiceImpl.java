@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.example.model.Product;
 import org.example.model.User;
-import org.example.service.FileService;
 import org.example.service.UserService;
 
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private final String fileName = "users.txt";
-    private FileService fileService = new FileServiceImpl();
 
 
     List<User> users = new ArrayList<>();
@@ -22,16 +20,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(User user) throws IOException {
-        String dataFromFile = fileService.getFromDataFile(fileName);
-        ObjectMapper mapper = new ObjectMapper();
-        List<User> list = new ArrayList<>();
-        list.add(user);
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        boolean b = fileService.writeDataFromFile(Collections.singletonList(json), fileName);
-        System.out.println(b);
-
-
         User user1 = new User(user.getChatId(), user.getFullName(), user.getUsername(), user.getPassword(), user.getState(), user.getRole());
         users.add(user1);
     }

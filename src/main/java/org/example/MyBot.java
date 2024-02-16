@@ -7,9 +7,12 @@ import org.example.service.BotButtonService;
 import org.example.service.impl.UserServiceImpl;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendVideo;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +63,16 @@ public class MyBot extends TelegramLongPollingBot {
                                 throw new RuntimeException(e);
                             }
                         } else if (text.equals("Русский язык \uD83C\uDDF7\uD83C\uDDFA")) {
-
+                            SendVideo video = new SendVideo();
+                            InputFile file = new InputFile(new File("C:\\Users\\bek02\\Desktop\\IMG_0081.MP4"));
+                            video.setChatId(chatId);
+                            video.setVideo(file);
+                            video.setCaption("test");
+                            try {
+                                execute(video);
+                            } catch (TelegramApiException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }case REGISTRATION -> {
 
