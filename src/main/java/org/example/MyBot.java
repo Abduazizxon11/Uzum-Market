@@ -27,13 +27,13 @@ public class MyBot extends TelegramLongPollingBot {
             String text = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
             if (text.equals("/start") || text.equals("Orqaga")){
-//                User user = new User(chatId, update.getMessage().getFrom().getFirstName(), update.getMessage().getFrom().getUserName(), update.getMessage().getText(), BotState.LANG, Roles.USER);
-//                try {
-//                    userService.create(user);
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                users.add(user);
+                User user = new User(chatId, update.getMessage().getFrom().getFirstName() + " " + update.getMessage().getFrom().getLastName(), update.getMessage().getFrom().getUserName(), update.getMessage().getText(), BotState.LANG, Roles.USER);
+                try {
+                    userService.create(user);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                users.add(user);
                 SendMessage message = new SendMessage();
                 message.setChatId(chatId);
                 message.setText("Assalomu aleykum. Tilni tanlang\n\n" +
