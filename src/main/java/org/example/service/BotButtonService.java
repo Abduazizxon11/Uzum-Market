@@ -51,4 +51,20 @@ public class BotButtonService {
 
         return markup;
     }
+    public ReplyKeyboardMarkup main(){
+        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> rowList = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+
+        KeyboardButton button = new KeyboardButton();
+        button.setText("fsfsf");
+        row.add(button);
+        rowList.add(row);
+        markup.setKeyboard(rowList);
+        markup.setResizeKeyboard(true);
+        markup.setSelective(true);
+        markup.setOneTimeKeyboard(true);
+
+        return markup;
+    }
 }
