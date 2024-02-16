@@ -51,7 +51,7 @@ public class BotButtonService {
 
         return markup;
     }
-    public ReplyKeyboardMarkup main(){
+    public ReplyKeyboardMarkup mainMenu(){
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         List<KeyboardRow> rowList = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
