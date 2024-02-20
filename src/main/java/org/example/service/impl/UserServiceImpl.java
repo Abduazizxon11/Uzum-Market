@@ -16,11 +16,12 @@ public class UserServiceImpl implements UserService {
 
 
     List<User> users = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
 
 
     @Override
     public void create(User user) throws IOException {
-        User user1 = new User(user.getChatId(), user.getFullName(), user.getUsername(), user.getPassword(), user.getState(), user.getRole());
+        User user1 = new User(user.getChatId(), user.getFullName(), user.getUsername(), user.getState(), user.getRole(), user.getLang());
         users.add(user1);
     }
 
@@ -29,15 +30,22 @@ public class UserServiceImpl implements UserService {
         for (int i = 0; i < users.size(); i++) {
             User user2 = users.get(i);
             if(chatId == user2.getChatId()){
-                if(!user.getFullName().equals("")){
+                if(!user.getFullName().isEmpty()){
                     user2.setFullName(user.getFullName());
                 }
-                if(user.getUsername().equals("")){
+                if(!user.getUsername().isEmpty()){
                     user2.setUsername(user.getUsername());
                 }
-                if(user.getPassword().equals("")){
-                    user2.setPassword(user.getPassword());
+                if(!user.getLang().equals(null)){
+                    user2.setLang(user.getLang());
                 }
+                if(!user.getRole().equals(null)){
+                    user2.setRole(user.getRole());
+                }
+                if(user.getState().equals(null)){
+                    user2.setState(user.getState());
+                }
+                users.set(i, user2);
             }
         }
     }
@@ -69,11 +77,8 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
-
-
-
     @Override
     public List<Product> basket() {
-        return null;
+        return products;
     }
 }

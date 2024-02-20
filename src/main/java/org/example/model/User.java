@@ -1,17 +1,24 @@
 package org.example.model;
 
 import org.example.States.BotState;
+import org.example.States.Lang;
 import org.example.States.Roles;
 
 public class User {
     private long chatId;
     private String fullName;
     private String username;
-    private String password;
     private BotState state;
     private Roles role;
+    private Lang lang;
 
+    public Lang getLang() {
+        return lang;
+    }
 
+    public void setLang(Lang lang) {
+        this.lang = lang;
+    }
 
     public long getChatId() {
         return chatId;
@@ -54,23 +61,28 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public User(long chatId, String fullName, String username, String password, BotState state, Roles role) {
+    public User(long chatId, String fullName, String username, BotState state, Roles role, Lang lang) {
         this.chatId = chatId;
         this.fullName = fullName;
         this.username = username;
-        this.password = password;
         this.state = state;
         this.role = role;
+        this.lang = lang;
     }
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "chatId=" + chatId +
+                ", fullName='" + fullName + '\'' +
+                ", username='" + username + '\'' +
+                ", state=" + state +
+                ", role=" + role +
+                ", lang=" + lang +
+                '}';
     }
 }
